@@ -1,0 +1,19 @@
+lass Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow=0, fast=0;
+        while(true)
+        {
+            fast=nums[nums[fast]]; //fast will move 2 steps ahead
+            slow=nums[slow]; //slow will move 1 step ahead
+            if(slow==fast) break; //cycle detected
+        }
+        slow=0; //make slow reach beginning of vector 
+        while(slow!=fast)
+        { //now move each slow and fast one by one
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return fast;
+    }
+};
