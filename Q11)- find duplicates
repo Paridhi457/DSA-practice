@@ -1,4 +1,5 @@
-lass Solution {
+APPROACH-1: slow and fast solution
+class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         int slow=0, fast=0;
@@ -15,5 +16,19 @@ public:
             fast=nums[fast];
         }
         return fast;
+    }
+};
+
+APPROACH-2: using absolute value
+class Solution {
+public:
+    int findDuplicate(vector<int>& arr) {
+        int n = arr.size();
+        for(int i=0;i<n;i++){
+            int temp = abs(arr[i]);
+            arr[temp-1] = -arr[temp-1];
+            if(arr[temp-1] > 0) return temp;
+        }     
+        return -1;   
     }
 };
