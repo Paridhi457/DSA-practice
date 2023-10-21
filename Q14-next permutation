@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        int infpt = -1;
+        int toswap = -1;
+        
+        for(int i = n-1 ; i>=0  ; i--)
+        {
+            if( i>0 && nums[i-1] < nums[i])
+            {
+                infpt = i;
+                toswap = i-1;
+                break;
+            }
+    }
+      if(infpt == -1)    //that means order is correct just need to reverse to get next permutation
+            reverse(nums.begin(),nums.end());
+        else
+        {
+        // if we found the inflation point now we need to find the candidate which we have to swap 
+        //lets go from back till inf point and find out the first no which is greater
+        
+        for(int i = n-1 ; i>= infpt ; i--)
+        {
+            if(nums[i] > nums[toswap])
+            {
+                swap(nums[i],nums[toswap]);
+                break;  
+            } 
+        }
+        // step 3 => reverse the nos from the inflation point to the last for get the next                     permutation 
+        reverse(nums.begin()+infpt,nums.end());
+        }
+    }      
+};
